@@ -2,16 +2,20 @@ import express from "express";
 import path from "path";
 import bodyParser from "body-parser";
 import bcrypt from "bcrypt";
-import mysql from "mysql2/promise";
+import mysql from "mysql2";
+
 
 const app = express();
-
 const port = 2080;
 
 const saltRounds: number = 10;
 
+// exprss 미들웨어 설정
 app.use(express.static(path.join(__dirname, "../")));
 app.use(bodyParser.urlencoded({ extended: false }));
+
+// dotenv 설정
+
 
 // index.html 페이지
 app.get("/", (req, res) => {
