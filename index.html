@@ -5,10 +5,24 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
+    <style>
+      #root {
+        display: flex;
+        width: 100vw;
+        height: 100vh;
+        align-items: center;
+        justify-content: center;
+      }
+
+      #accountForm {
+        display: flex;
+        flex-direction: column;
+      }
+    </style>
   </head>
   <body>
     <div id="root">
-      <form>
+      <form id="accountForm" action="register" method="post">
         <label for="name">이름</label>
         <input type="text" id="name" name="name" placeholder="이름" />
         <label for="email">이메일</label>
@@ -33,6 +47,7 @@
           name="phone"
           placeholder="휴대전화번호"
         />
+        <button type="submit">제출하기</button>
       </form>
     </div>
   </body>
