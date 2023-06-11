@@ -3,7 +3,7 @@ import path from "path";
 import bodyParser from "body-parser";
 import bcrypt from "bcrypt";
 import mysql from "mysql2";
-
+import connection from "./DBconnect";
 
 const app = express();
 const port = 2080;
@@ -14,8 +14,13 @@ const saltRounds: number = 10;
 app.use(express.static(path.join(__dirname, "../")));
 app.use(bodyParser.urlencoded({ extended: false }));
 
-// dotenv 설정
-
+connection.connect((err) => {
+  if (err) {
+    console.error("DB연결에 실패했습니다", err);
+    return;
+  }
+  console.log("DB연결에 성공했습니다");
+});
 
 // index.html 페이지
 app.get("/", (req, res) => {
