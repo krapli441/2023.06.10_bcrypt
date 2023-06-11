@@ -4,6 +4,7 @@ import bodyParser from "body-parser";
 import bcrypt from "bcrypt";
 import mysql from "mysql2";
 import connection from "./DBconnect";
+import { error } from "console";
 
 const app = express();
 const port = 2080;
@@ -59,6 +60,15 @@ app.post("/register", (req, res) => {
       }
       console.log("암호 일치 여부 :" + result);
     });
+
+    try {
+      const query =
+        "INSERT INTO user_information (name, email, age, id, password, location, phone) VALUES (?, ?, ?, ?, ?, ?, ?)";
+      const values = [name, email, age, id, hashedPassword, location, phone];
+      connection.query(query, values);
+    } catch (err) {
+      console.log(err);
+    }
   });
 
   res.send("회원가입이 완료되었습니다.");
